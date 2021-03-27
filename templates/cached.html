@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/starter-template.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div id="nav-placeholder"></div>
+
+
+
+    <main role="main" class="container">
+      <div class="card-columns">
+                  <!--{{images}}-->
+        {% for filename in images %}
+        <div class="card" style="width: 18rem;" id="img-{{loop.index}}">
+          <img class="card-img-top" src="/static/images/{{ filename }}"/>
+          <div class="card-header">{{filename}}</div>
+          <!--<h5 class="card-title"></h5>-->
+          <!--<a href="/poster/img/{{filename}}" class="btn btn-primary">Select</a>-->
+          <div class="row">
+            <div class="col-4">
+              <a href="#"  onclick="ajax_call( '{{filename}}' )" class="btn btn-primary">Select</a>
+            </div>
+            <div class="col-2">
+              <a href="#" onclick="delete_poster('{{filename}}', '{{loop.index}}')" class="btn btn-danger">Delete</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+
+
+    </main><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/static/jquery-slim.min.js"><\/script>')</script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="/static/popper.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <script>
+        function delete_poster(filename, index) {
+          $.ajax({
+            type: "DELETE",
+            url: "/poster/img/" + filename,
+            success:function(responsedata){
+              console.log("img-" + index)
+               $("#img-" + index).remove()
+            }
+          })
+        }
+        function ajax_call(filename) {
+          $.ajax({
+            type: "GET",
+            url: "/poster/img/" + filename,
+            success:function(responsedata){
+               // process on data
+               // alert("got response as "+"'"+responsedata+"'");
+
+            }
+          })
+        }
+        $(function(){
+          $("#nav-placeholder").load("../navigation.html");
+        });
+    </script>
+  </body>
+</html>
