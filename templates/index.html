@@ -1,182 +1,333 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+  <title>Starter Template for Bootstrap</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/static/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="/static/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="/static/starter-template.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="/static/starter-template.css" rel="stylesheet">
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <div id="nav-placeholder">
+<div id="nav-placeholder"></div>
+
+
+
+<main role="main" class="container">
+  <div class="card-columns">
+  <div class="" style="margin-bottom:2em">
+    <div class="card">
+      <div class="card-header">
+        Select Run Mode
+      </div>
+      <div class="form-inline">
+        <div class="form-check form-check-inline custom-switch">
+          <input class="form-check-input" type="radio" name="sdmode" id="inlineRadio1" value="static" onclick="sdmode(this.value)">
+          <label class="form-check-label" for="inlineRadio1">Static Mode</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="sdmode" id="inlineRadio2" value="dynamic" onclick="sdmode(this.value)">
+          <label class="form-check-label" for="inlineRadio2">Dynamic Mode</label>
+        </div>
+      </div>
+
+      <div class="card" id="static-box" style="margin-bottom:2em">
+        <div class="card-header">
+          Static Modes
+        </div>
+        <div class="card-body" >
+          <div class="form-check form-check-inline">
+            <button class="btn btn-primary" type="button" id="random_image" onclick="randomPoster()">Select Random Image</button>
+          </div>
+        </div>
+      </div>
+      <div class="card" id="dynamic-box" style="margin-bottom:2em">
+        <div class="card-header">
+          Dynamic Modes
+        </div>
+        <div class="card-body">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineCheckbox3" value="option3" onchange="runMode(this.value)">
+            <label class="form-check-label" for="inlineCheckbox3">Random Rotating</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineCheckbox4" value="option4" onchange="runMode(this.value)">
+            <label class="form-check-label" for="inlineCheckbox4">Now Playing Plex</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineCheckbox5" value="option5" onchange="runMode(this.value)" disabled>
+            <label class="form-check-label" for="inlineCheckbox5">Plex Recently Added</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineCheckbox6" value="option6" onchange="runMode(this.value)" disabled>
+            <label class="form-check-label" for="inlineCheckbox6">Plex Recently Released</label>
+          </div>
+        </div>
+      </div>
 
     </div>
 
+  </div>
+  <div class="card">
+    <div class="card-header">
+      Currently Displayed
+    </div>
+    <div class="card-body" >
+              <img style="width: 12rem" id="current-image" class="card-img-top" src="" alt="Card image cap">
 
-
-    <main role="main" class="container">
-      <div class="card" style="margin-bottom:2em">
-        <div class="card-header">
-          Select Run Mode
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      Enter URL
+    </div>
+    <div class="card-body">
+      <form id="formURL" class="" action="" >
+        <div class="form-group">
+          <label class="" for="posterImageURL">Poster Image URL </label>
+          <input type="url"
+                 class="form-control"
+                 id="posterImageURL"
+                 name="posterImageURL"
+                 aria-describedby="posterImageURLHelp"
+                 placeholder="Enter Poster Image URL" width="25">
+          <!--<small id="posterImageURLHelp" class="form-text text-muted">Enter the url of just the image you want to upload.</small>-->
         </div>
-        <div class="card-body">
-          <!--<form class="" action="" id="runMode">-->
-            <div class="form-group">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio1" value="option1" onchange="runMode(this.value)">
-                <label class="form-check-label" for="inlineRadio1">Manually Selected</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                <label class="form-check-label" for="inlineRadio2">Random</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                <label class="form-check-label" for="inlineRadio3">Random Rotating</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio4" value="option4">
-                <label class="form-check-label" for="inlineRadio4">Now Playing Plex</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio5" value="option5" disabled>
-                <label class="form-check-label" for="inlineRadio5">Plex Recently Added</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio6" value="option6" disabled>
-                <label class="form-check-label" for="inlineRadio5">Plex Recently Released</label>
-              </div>
-              <!--<small id="posterImageURLHelp" class="form-text text-muted">Enter the url of just the image you want to upload.</small>-->
-            </div>
-              <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+        <button type="submit" class="btn btn-primary">Submit</button>
 
-          <!--</form>-->
-          <!--<h5 class="card-title">Special title treatment</h5>-->
-          <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-          <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-        </div>
-      </div>
+      </form>
+      <!--<h5 class="card-title">Special title treatment</h5>-->
+      <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+      <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+    </div>
+  </div>
+    </div>
+  <!--<div class="starter-template">-->
+  <!--<h1>Bootstrap starter template</h1>-->
+  <!--<p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>-->
+  <!--</div>-->
 
-      <div class="card">
-        <div class="card-header">
-          Enter URL
-        </div>
-        <div class="card-body">
-          <form id="formURL" class="" action="" >
-            <div class="form-group">
-              <label class="" for="posterImageURL">Poster Image URL </label>
-              <input type="url"
-                     class="form-control"
-                     id="posterImageURL"
-                     name="posterImageURL"
-                     aria-describedby="posterImageURLHelp"
-                     placeholder="Enter Poster Image URL" width="25">
-              <!--<small id="posterImageURLHelp" class="form-text text-muted">Enter the url of just the image you want to upload.</small>-->
-            </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+</main><!-- /.container -->
 
-          </form>
-          <!--<h5 class="card-title">Special title treatment</h5>-->
-          <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-          <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-        </div>
-      </div>
-      <!--<div class="starter-template">-->
-        <!--<h1>Bootstrap starter template</h1>-->
-        <!--<p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>-->
-      <!--</div>-->
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/static/jquery-slim.min.js"><\/script>')</script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="/static/popper.min.js"></script>
+<script src="/static/bootstrap.min.js"></script>
+<script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+<script>
 
-    </main><!-- /.container -->
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="/static/jquery-slim.min.js"><\/script>')</script>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="/static/popper.min.js"></script>
-    <script src="/static/bootstrap.min.js"></script>
-    <script>
-
-      var modeManual = false;
-      var modeRandom = false;
-      var modeRandomRotating = false;
-      var modePlexNowPlaying = false;
-      var modePlexRecentlyAdded = false;
-      var modeRecentlyReleased = false;
-
-      function runMode(options) {
-        switch (options) {
-          case "option1":
-            modeManual = !modeManual;
-          case "option2":
-            modeRandom
-
-        }
-        console.log(options);
+  function randomPoster() {
+    $.ajax({url:'/poster/url/random'})
+  }
+  function sdmode(val) {
+    if (val == "static") {
+      $("#static-box").children().find('*').attr('disabled', false);
+      $("#dynamic-box").children().find('*').attr('disabled', true);
+      mode = "static"
+    } else if (val == "dynamic") {
+      $("#static-box").children().find('*').attr('disabled', true);
+      $("#dynamic-box").children().find('*').attr('disabled', false);
+    }
+    $.ajax({
+      type: 'PUT',
+      url: "/runmode/mode/" + val,
+    })
+  }
+  var socket = io();
+  socket.on('currentImage', function(data){
+    $("#current-image").attr("src", "/static/images/" + data)
+  });
+  $.ajax({
+    type: "GET",
+    url: "/poster/current",
+    success: function(data) {
+      console.log(data)
+      $("#current-image").attr("src", "/static/images/" + data)
+    }
+  })
+  //Load Run Mode Menus
+  $.ajax({
+    type: "GET",
+    url: "/runmode",
+    success: function(data) {
+      if (data['mode'] == "static") {
+        $("#inlineRadio1").prop("checked", true);
+        $("#inlineRadio2").prop("checked", false);
+        sdmode("static")
+      } else {
+        $("#inlineRadio1").prop("checked", false);
+        $("#inlineRadio2").prop("checked", true);
+        sdmode("dynamic")
       }
-      // $( "#runMode").on( "submit", function(e) {
-      //       var dataString = $(this).serialize();
-      //       $.ajax({
-      //         type: "PUT",
-      //         url: "/runmode",
-      //         data: dataString,
-      //         success: function () {
-      //           $("#posterImageURL").val("")
-      //           // $("#contact_form").html("<div id='message'></div>");
-      //           // $("#message")
-      //           //   .html("<h2>Contact Form Submitted!</h2>")
-      //           //   .append("<p>We will be in touch soon.</p>")
-      //           //   .hide()
-      //           //   .fadeIn(1500, function () {
-      //           //     $("#message").append(
-      //           //       "<img id='checkmark' src='images/check.png' />"
-      //           //     );
-      //           //   });
-      //         }
-      //       });
-      //
-      //       e.preventDefault();
-      //     });
-      $( "#formURL" ).on( "submit", function(e) {
-            var dataString = $(this).serialize();
-            $.ajax({
-              type: "POST",
-              url: "/poster/url",
-              data: dataString,
-              success: function () {
-                $("#posterImageURL").val("")
-                // $("#contact_form").html("<div id='message'></div>");
-                // $("#message")
-                //   .html("<h2>Contact Form Submitted!</h2>")
-                //   .append("<p>We will be in touch soon.</p>")
-                //   .hide()
-                //   .fadeIn(1500, function () {
-                //     $("#message").append(
-                //       "<img id='checkmark' src='images/check.png' />"
-                //     );
-                //   });
-              }
-            });
+    }
+  })
 
-            e.preventDefault();
-          });
-        // });
+  var modeManual;
+  var modeRandom;
+  var modeRandomRotating;
+  var modePlexNowPlaying;
+  var modePlexRecentlyAdded;
+  var modePlexRecentlyReleased;
 
-        $(function(){
-          $("#nav-placeholder").load("navigation.html");
-        });
-    </script>
-  </body>
+  $.ajax({
+    type: "GET",
+    url: "/runmode/dynamic",
+    success: function (data) {
+      for (var key in data) {
+        var isTrueSet = (data[key] == 'true');
+        switch (key) {
+          case "manual":
+            //   $("#inlineCheckbox1").prop("checked", isTrueSet);
+            //   modeManual = isTrueSet;
+            //   break;
+            // case "random":
+            //   $("#inlineCheckbox2").prop("checked", isTrueSet);
+            //   modeRandom = isTrueSet;
+            break;
+          case "random_rotating":
+            $("#inlineCheckbox3").prop("checked", isTrueSet);
+            modeRandomRotating = isTrueSet;
+            break;
+          case "plex":
+            $("#inlineCheckbox4").prop("checked", isTrueSet);
+            modePlexNowPlaying = isTrueSet;
+            break;
+          case "plex_recently_added":
+            $("#inlineCheckbox5").prop("checked", isTrueSet);
+            modePlexRecentlyAdded = isTrueSet;
+            break;
+          case "plex_recently_released":
+            $("#inlineCheckbox6").prop("checked", isTrueSet);
+            modePlexRecentlyReleased = isTrueSet;
+            break;
+        }
+      }
+    }
+  });
+
+
+
+  function runMode(options) {
+    var mode;
+    var value;
+    switch (options) {
+            // case "option1":
+            //   modeManual = !modeManual;
+            //   mode = "manual";
+            //   value = modeManual;
+            //   break;
+            // case "option2":
+            //   modeRandom = !modeRandom;
+            //   mode = "random";
+            //   value = modeRandom;
+            //   break;
+      case "option3":
+        modeRandomRotating = !modeRandomRotating;
+        mode = "random_rotating";
+        value = modeRandomRotating;
+        break;
+      case "option4":
+        modePlexNowPlaying = !modePlexNowPlaying;
+        mode = "plex";
+        value = modePlexNowPlaying;
+        break;
+      case "option5":
+        modePlexRecentlyAdded = !modePlexRecentlyAdded;
+        mode = "plex_recently_added";
+        value = modePlexRecentlyAdded;
+        break;
+      case "option6":
+        modePlexRecentlyReleased = !modePlexRecentlyReleased;
+        mode = "plex_recently_released";
+        value = modePlexRecentlyReleased;
+
+
+    }
+    $.ajax({
+      type: "PUT",
+      url: "/runmode/" + mode + "/" + value,
+      // data: dataString,
+      success: function () {
+        $("#posterImageURL").val("")
+        // $("#contact_form").html("<div id='message'></div>");
+        // $("#message")
+        //   .html("<h2>Contact Form Submitted!</h2>")
+        //   .append("<p>We will be in touch soon.</p>")
+        //   .hide()
+        //   .fadeIn(1500, function () {
+        //     $("#message").append(
+        //       "<img id='checkmark' src='images/check.png' />"
+        //     );
+        //   });
+      }
+    });
+    console.log(options);
+  }
+  // $( "#runMode").on( "submit", function(e) {
+  //       var dataString = $(this).serialize();
+  //       $.ajax({
+  //         type: "PUT",
+  //         url: "/runmode",
+  //         data: dataString,
+  //         success: function () {
+  //           $("#posterImageURL").val("")
+  //           // $("#contact_form").html("<div id='message'></div>");
+  //           // $("#message")
+  //           //   .html("<h2>Contact Form Submitted!</h2>")
+  //           //   .append("<p>We will be in touch soon.</p>")
+  //           //   .hide()
+  //           //   .fadeIn(1500, function () {
+  //           //     $("#message").append(
+  //           //       "<img id='checkmark' src='images/check.png' />"
+  //           //     );
+  //           //   });
+  //         }
+  //       });
+  //
+  //       e.preventDefault();
+  //     });
+  $( "#formURL" ).on( "submit", function(e) {
+    var dataString = $(this).serialize();
+    $.ajax({
+      type: "POST",
+      url: "/poster/url",
+      data: dataString,
+      success: function () {
+        $("#posterImageURL").val("")
+        // $("#contact_form").html("<div id='message'></div>");
+        // $("#message")
+        //   .html("<h2>Contact Form Submitted!</h2>")
+        //   .append("<p>We will be in touch soon.</p>")
+        //   .hide()
+        //   .fadeIn(1500, function () {
+        //     $("#message").append(
+        //       "<img id='checkmark' src='images/check.png' />"
+        //     );
+        //   });
+      }
+    });
+    e.preventDefault();
+  });
+  // });
+
+  $(function(){
+    $("#nav-placeholder").load("navigation.html");
+  });
+
+</script>
+</body>
 </html>
